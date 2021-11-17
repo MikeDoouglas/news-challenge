@@ -1,3 +1,46 @@
+# Django Challenge
+
+## Development
+
+
+### 1. Create Python Virtual Environment
+
+```
+$ python3 -m venv env
+$ . env/bin/activate
+$ pip install -r requirements.txt
+```
+### 2. Environment variables
+
+Duplicate `.env.example`, rename to `.env` and set environment variables.
+
+### 3. Running
+Development:
+```
+$ docker-compose up 
+```
+
+### 4. Create super user
+
+Create super user into container:
+
+```
+$ docker-compose exec api bash
+$ python manage.py createsuperuser
+```
+
+### 5. Just use it!
+
+Use [this Postman Collection](postman_collection.json) ([How to import Collections on Postman](https://learning.postman.com/docs/getting-started/importing-and-exporting-data/#importing-postman-data))
+
+## Production
+
+Execute all previous steps, only for steps **#3** and **#4** you need to add flag `-f docker-compose.prod.yml` to docker-compose command.
+
+> Note: If you ran **development** Docker Compose file before, you need to rebuild it for production: `docker-compose -f docker-compose.prod.yml build`
+
+---
+
 # Jungle Devs - Django Challenge #001
 
 ## Description
