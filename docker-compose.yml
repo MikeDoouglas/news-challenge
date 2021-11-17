@@ -9,9 +9,13 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: ${DB_NAME}
   api:
-    build: .
-    command: sh -c "./wait-for-it.sh db:5432 && python3 manage.py migrate &&
-      gunicorn djangochallenge.wsgi:application --bind 0.0.0.0:8000"
+    build:
+      context: .
+      target: dev
+    command: sh -c "./wait-for-it.sh db:5432 && python3 manage.py migrate && python3
+      manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/app
     ports:
       - "8000:8000"
     depends_on:
